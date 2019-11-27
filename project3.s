@@ -111,11 +111,6 @@ lloop:
 
 test: 	
 	
-	#display req for input
-	li $v0, 4
-	la $a0, in
-	syscall
-	
 	#first = t2, last = t3
 	li $t1, 0
 	sub $t3, $t6, $t1
