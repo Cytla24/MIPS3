@@ -31,6 +31,22 @@ main:
 	li $a1, 1000
 	syscall
 	
+	addi $s0, $sp, 0
+	li $t6, 999
+push:
+	beq $t6, -1, done
+	addi $sp, $sp, -4
+	
+	#get each character
+	la $a1, input
+	addu $a1, $a1, $t6
+	lb $a0, 0($a1)
+	
+	sw $a0, 0($sp)
+	addi $t6, $t6, -1
+	j push
+done:
+	
 	jal convert
 	
 	beq $v0, 4, end
