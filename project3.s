@@ -62,76 +62,7 @@ convert:
 	#instantiate index to 0
 	addi $t6, $zero, 0
 
-	#declare final reg
-	li $t4, 0
-	
-	#Finding first non space char
-	li $t2, 0
-floop:
-	beq $t6, 996 , test
-	
-	#get each character
-	la $a1, input
-	addu $a1, $a1, $t6
-	lb $a0, 0($a1)
-	
-	
-	#branch if character is not a space or tab
-	seq $t5, $a0, 0
-	seq $t7,$a0, 32
-	seq $t8,$a0, 9
-	
-	or $t7, $t5, $t7
-	or $t7, $t7, $t8
-	add $t2, $t6, $zero			#set t2 = first non space value 
-	beq $t7, 0, inloop
-	
-	
-	#increment index
-	addi $t6, $t6, 1
-	add $t2, $t6, $zero
-	j floop
 
-inloop:
-	#loop from back
-	li $t6, 999
-	j lloop
-
-lloop:	
-	blt $t6, $t2, body 			#if index is back at t2, jump to body
-	
-	#get each character
-	la $a1, input
-	addu $a1, $a1, $t6
-	lb $a0, 0($a1)
-	
-	#branch if character is not a space or tab
-	seq $t5, $a0, 0
-	seq $t9,$a0, 32
-	seq $t8,$a0, 9
-	seq $t0, $a0,10
-	
-	#beq $a0, 10, test 			#check if enter key
-	
-	or $t9, $t5, $t9
-	or $t9, $t0, $t9
-	or $t9, $t9, $t8 
-	beq $t9, 0, test			#MOTE LAST = ENTER - 2
-	
-
-	
-	#increment index
-	li $t1, 1
-	sub $t6, $t6, $t1
-	j lloop
-
-test: 	
-	
-	#first = t2, last = t3
-	li $t1, 0
-	sub $t3, $t6, $t1
-	addi $t1, $t2, 4
-	bgt $t3, $t1, invalid
 	li $t9, 0		#Count variable
 	li $t7, 1		#Square Variable
 	add $t6, $t3, $zero
