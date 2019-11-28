@@ -66,6 +66,19 @@ convert:
 	li $t9, 0		#Count variable
 	li $t7, 1		#Square Variable
 	
+	lw $t6, 0($sp)
+	sne $t2, $t6, 44
+	sne $t3, $sp, $s0
+	slt $t0, $t9, 4
+	
+	#branch test cases
+	and $t8, $t8, $t2
+	and $t8, $t8, $t3
+	
+	
+	
+	and $t8, $t8, $t0
+	
 	
 	
 test2:
