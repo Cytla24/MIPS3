@@ -203,4 +203,19 @@ exit:
 	jr $ra
 	
 substring:
+
+	add $t0, $ra, $zero
+	
+	li $t8, 1
+	bne $t8, 1, nexxt
+	sne $t2, $t6, 44
+	sne $t3, $sp, $s0
+	
+	and $t8, $t2, $t3
+	
+	lw $t6, 0($sp)
+nexxt:
+
+process:
+
 	
