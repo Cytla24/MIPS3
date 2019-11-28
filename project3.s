@@ -46,7 +46,6 @@ push:
 	addi $t6, $t6, -1
 	j push
 done:
-	
 	jal convert
 	
 	beq $v0, 4, end
@@ -57,15 +56,17 @@ done:
 end:
 	li $v0,10
 	syscall
-convert:
 	
+convert:
+	beq $sp, $s0, exit
 	#instantiate index to 0
 	addi $t6, $zero, 0
-
-
+	
+	li $t4, 0 		#total variable
 	li $t9, 0		#Count variable
 	li $t7, 1		#Square Variable
-	add $t6, $t3, $zero
+	
+	
 	
 test2:
 	blt $t6,$t2, body
@@ -123,7 +124,7 @@ countloop:
 	j countloop
 	
 endcountloop:
-		#separate numbers from other valid inputs
+	#separate numbers from other valid inputs
 	bne $s2, $t8, letters
 	li $t5, 0				#temporary increment
 	li $t0, 48
