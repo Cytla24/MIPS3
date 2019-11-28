@@ -65,6 +65,15 @@ convert:
 	li $t4, 0 		#total variable
 	li $t9, 0		#Count variable
 	li $t7, 1		#Square Variable
+	li $t5, 0 		#num variable
+	
+	addi $sp, $sp, -4
+	sw $ra, 0($sp)
+	
+	jal substring
+	
+	lw $ra, 0($sp)
+	addi $sp, $sp, 4
 	
 	lw $t6, 0($sp)
 	sne $t2, $t6, 44
@@ -192,4 +201,6 @@ invalid:
 	
 exit:
 	jr $ra
+	
+substring:
 	
