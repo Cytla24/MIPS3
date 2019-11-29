@@ -42,3 +42,14 @@ new:
 end:
 	li $v0,10
 	syscall
+	
+convert:
+	add $s2, $sp, $zero
+	addi $s3, $sp, -4
+	add $s1, $sp, $zero
+cstart:
+	beq $s1, $s0, flip2
+	li $t8, 1		#make t8 =1 for conditionals
+	#li $t5, 0		#add null inbetween characters 		REMEMBER TO CHANGE
+	#addi $sp, $sp, -4	
+	#sw $t5, 0($sp)
