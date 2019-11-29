@@ -302,3 +302,25 @@ addcomma:
 	seq $t0, $s5, $t5
 	seq $t5, $s1, $s0
 	and $t0, $t0, $t5
+	
+	addi $t5, $s4, 4
+	seq $t8, $s5, $t5
+	
+	beq $t0, 1 , changeend
+	beq $t8, 1, changeend
+	
+	li $v0, 4
+	la $a0, comma
+	syscall
+	
+	j changeend
+
+addcomma2:
+	seq $t0, $s1, $s0
+	
+	beq $t0, 1 , changeend
+	
+	li $v0, 4
+	la $a0, comma
+	syscall	
+	j changeend
