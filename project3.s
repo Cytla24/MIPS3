@@ -105,3 +105,14 @@ estart:
 	beq $t7, 0, nospaceeach
 	addi $sp, $sp, 4
 	j estart
+	
+nospaceeach:
+	addi $sp, $sp, -4
+	sw $ra, 0($sp)
+	
+	#call final sub routine
+	jal change
+	
+	lw $ra, 0($sp)
+	addi $sp, $sp, 4
+
