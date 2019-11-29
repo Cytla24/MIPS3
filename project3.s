@@ -85,3 +85,16 @@ flipmid:
 	lw $ra, 0($sp)
 	addi $sp, $sp, 4
 	j cstart
+	
+flip2:
+	jr $ra
+
+each:
+	lw $t1, 0($sp)
+	addi $sp, $sp, 4
+estart:	
+	lw $t6, 0($sp)
+	
+	seq $t5, $t6, 0
+	seq $t7,$t6, 32
+	seq $t8,$t6, 9
