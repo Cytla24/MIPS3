@@ -197,3 +197,14 @@ stage1change:
 	
 	and $t4, $t4, $t8
 	or $t0, $t0, $t4
+
+
+	#if not valid, skip to next char
+	li $t8, 1
+	addi $t5, $s4, 4
+	beq $s5,$t5,printval
+	bne $t0, $t8, invalidchange
+	
+	li $t5, 0
+	li $t7, 1 		#reset SQ to zero
+	#loop to find the square of base we would be multiplying by
