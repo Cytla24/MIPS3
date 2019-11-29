@@ -276,3 +276,17 @@ sletters:
 	mult $t5, $t7
 	mflo $t5	
 	add $s7, $s7, $t5
+	
+increment:
+	#increment count
+	addi $t9, $t9, 1
+	#decrement counter
+	addi $s5, $s5, 4
+	lw $t6, 0($s5)
+	j stage1change
+
+printval:
+	li $v0, 1
+	addi $a0,$s7, 0
+	syscall
+	j addcomma
