@@ -21,3 +21,11 @@ push:
 	lb $a0, 0($a1)
 	
 	li $t0, 0
+	beq $a0, 10, skip
+	beq $a0, 0, skip
+	addi $sp, $sp, -4
+	sw $a0, 0($sp)
+skip:
+	addi $t6, $t6, -1
+	j push
+done:
