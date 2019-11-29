@@ -172,3 +172,15 @@ stage1change:
 	#Check if number
 	li $t5, 47		
 	sgt $t4, $t6, $t5
+	
+	li $t5, 58
+	slt $t8, $t6, $t5
+	
+	and $t0, $t4, $t8
+	
+	#Check if big  letter
+	li $t5, 64		
+	sgt $t4, $t6, $t5
+	
+	li $t5, 86
+	slt $t8, $t6, $t5
