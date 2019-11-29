@@ -307,7 +307,7 @@ addcomma:
 	seq $t8, $s5, $t5
 	
 	beq $t0, 1 , changeend
-	beq $t8, 1, changeend
+	beq $t8, 0, changeend
 	
 	li $v0, 4
 	la $a0, comma
