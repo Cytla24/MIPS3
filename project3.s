@@ -147,3 +147,14 @@ changestart:
 	lw $t6, 0($s5)
 	j changestart
 
+changestart2:
+	lw $t6, 0($s4)
+	seq $t5, $t6, 0
+	seq $t3,$t6, 32
+	seq $t8,$t6, 9
+	or $t5, $t3, $t5
+	or $t5, $t5, $t8
+	beq $t5, 0, stage1change
+	addi $s4, $s4, -4
+	lw $t6, 0($s4)
+	j changestart2
