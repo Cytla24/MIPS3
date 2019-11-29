@@ -116,3 +116,18 @@ nospaceeach:
 	lw $ra, 0($sp)
 	addi $sp, $sp, 4
 
+
+invalid:
+eachend:
+	addi $sp, $sp, -4
+	sw $t1, 0($sp)
+	jr $ra
+
+change:
+	lw $t2, 0($sp)
+	addi $sp, $sp, 4
+	addi $s5, $sp, 0
+	li $s7, 0
+	li $t9, 0		#Count variable
+	li $t7, 1		#Square Variable
+
