@@ -98,3 +98,10 @@ estart:
 	seq $t5, $t6, 0
 	seq $t7,$t6, 32
 	seq $t8,$t6, 9
+
+	or $t7, $t5, $t7
+	or $t7, $t7, $t8
+	beq $s2, $sp, invalid
+	beq $t7, 0, nospaceeach
+	addi $sp, $sp, 4
+	j estart
