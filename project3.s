@@ -248,3 +248,11 @@ endcountloop:
 	beq $t4, 1, sletters
 	j invalidchange
 		#separate numbers from other valid inputs
+numbers:
+	li $t5, 0				#temporary increment
+	li $t0, 48
+	sub $t5, $t6, $t0
+	mult $t5, $t7
+	mflo $t5
+	add $s7, $s7, $t5
+	j increment
