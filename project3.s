@@ -130,4 +130,20 @@ change:
 	li $s7, 0
 	li $t9, 0		#Count variable
 	li $t7, 1		#Square Variable
+	
+changestart:
+	lw $t6, 0($s5)
+	seq $t5, $t6, 0
+	seq $t3,$t6, 32
+	seq $t8,$t6, 9
+	
+	or $t5, $t3, $t5
+	or $t5, $t5, $t8
+	lw $t6, 0($s5)
+	addi $s4, $s3, 0
+	beq $t5, 0, changestart2
+	beq $s3, $s2, changestart2
+	addi $s5, $s5, 4
+	lw $t6, 0($s5)
+	j changestart
 
