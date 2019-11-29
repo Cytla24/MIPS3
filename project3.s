@@ -4,7 +4,8 @@
 	input: .space 1000
 .text
 main:
-#input string
+	
+	#input string
 	li $v0, 8
 	la $a0, input
 	li $a1, 1000
@@ -29,7 +30,7 @@ skip:
 	addi $t6, $t6, -1
 	j push
 done:
-jal convert
+	jal convert
 	
 	#add a to test where stack is 
 	#li $t5, 97
@@ -42,7 +43,7 @@ new:
 end:
 	li $v0,10
 	syscall
-	
+
 convert:
 	add $s2, $sp, $zero
 	addi $s3, $sp, -4
@@ -63,6 +64,7 @@ stage1:
 	
 	addi $sp, $sp, -4
 	sw $t6, 0($sp)
+	
 addjump:	
 	addi $s1, $s1, 4
 	
@@ -71,7 +73,8 @@ addjump:
 	and $t8, $t2, $t3
 	
 	j stage1
-
+	
+	
 flip:
 	lw $t6, 0($sp)
 	bne $t6, 44, flipmid
@@ -85,7 +88,6 @@ flipmid:
 	lw $ra, 0($sp)
 	addi $sp, $sp, 4
 	j cstart
-	
 flip2:
 	jr $ra
 
@@ -98,14 +100,14 @@ estart:
 	seq $t5, $t6, 0
 	seq $t7,$t6, 32
 	seq $t8,$t6, 9
-
+	
 	or $t7, $t5, $t7
 	or $t7, $t7, $t8
 	beq $s2, $sp, invalid
 	beq $t7, 0, nospaceeach
 	addi $sp, $sp, 4
 	j estart
-	
+
 nospaceeach:
 	addi $sp, $sp, -4
 	sw $ra, 0($sp)
@@ -115,7 +117,6 @@ nospaceeach:
 	
 	lw $ra, 0($sp)
 	addi $sp, $sp, 4
-
 
 invalid:
 eachend:
@@ -130,7 +131,6 @@ change:
 	li $s7, 0
 	li $t9, 0		#Count variable
 	li $t7, 1		#Square Variable
-	
 changestart:
 	lw $t6, 0($s5)
 	seq $t5, $t6, 0
@@ -146,7 +146,7 @@ changestart:
 	addi $s5, $s5, 4
 	lw $t6, 0($s5)
 	j changestart
-
+	
 changestart2:
 	lw $t6, 0($s4)
 	seq $t5, $t6, 0
@@ -172,7 +172,7 @@ stage1change:
 	#Check if number
 	li $t5, 47		
 	sgt $t4, $t6, $t5
-	
+
 	li $t5, 58
 	slt $t8, $t6, $t5
 	
@@ -184,7 +184,7 @@ stage1change:
 	
 	li $t5, 86
 	slt $t8, $t6, $t5
-
+	
 	and $t4, $t4, $t8
 	or $t0, $t0, $t4 
 	
@@ -197,18 +197,17 @@ stage1change:
 	
 	and $t4, $t4, $t8
 	or $t0, $t0, $t4
-
+	
 
 	#if not valid, skip to next char
 	li $t8, 1
 	addi $t5, $s4, 4
-	beq $s5,$t5,printval
+	beq $s5,$t5,printval2
 	bne $t0, $t8, invalidchange
 	
 	li $t5, 0
 	li $t7, 1 		#reset SQ to zero
 	#loop to find the square of base we would be multiplying by
-
 countloop:
 	bge $t5, $t9, endcountloop
 	li $s6, 31
@@ -276,7 +275,7 @@ sletters:
 	mult $t5, $t7
 	mflo $t5	
 	add $s7, $s7, $t5
-	
+
 increment:
 	#increment count
 	addi $t9, $t9, 1
@@ -290,6 +289,11 @@ printval:
 	addi $a0,$s7, 0
 	syscall
 	j addcomma
+printval2:
+	li $v0, 1
+	addi $a0,$s7, 0
+	syscall
+	j addcomma3
 	
 invalidchange:
 	li $v0, 4
@@ -323,6 +327,20 @@ addcomma2:
 	li $v0, 4
 	la $a0, comma
 	syscall	
+	j changeend
+
+addcomma3:
+
+	
+	addi $t5, $s4, 4
+	seq $t8, $s5, $t5
+	
+	beq $t8, 1, changeend
+	
+	li $v0, 4
+	la $a0, comma
+	syscall
+	
 	j changeend
 changeend:
 	beq $sp, $s2, donecend
