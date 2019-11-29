@@ -290,3 +290,15 @@ printval:
 	addi $a0,$s7, 0
 	syscall
 	j addcomma
+	
+invalidchange:
+	li $v0, 4
+	la $a0, invv
+	syscall
+	j addcomma2
+	
+addcomma:
+	addi $t5, $s3, 4
+	seq $t0, $s5, $t5
+	seq $t5, $s1, $s0
+	and $t0, $t0, $t5
