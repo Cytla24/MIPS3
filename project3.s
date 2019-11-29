@@ -63,3 +63,11 @@ stage1:
 	
 	addi $sp, $sp, -4
 	sw $t6, 0($sp)
+addjump:	
+	addi $s1, $s1, 4
+	
+	sne $t2, $t6, 44
+	sne $t3, $s1, $s0
+	and $t8, $t2, $t3
+	
+	j stage1
