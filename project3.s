@@ -53,3 +53,13 @@ cstart:
 	#li $t5, 0		#add null inbetween characters 		REMEMBER TO CHANGE
 	#addi $sp, $sp, -4	
 	#sw $t5, 0($sp)
+	
+stage1:
+
+	#add substring to front of stack 			KEEP TRACK OF $S1
+	bne $t8, 1, flip
+	lw $t6, 0($s1)
+	beq $t6, 10, addjump
+	
+	addi $sp, $sp, -4
+	sw $t6, 0($sp)
