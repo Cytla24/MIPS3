@@ -158,3 +158,17 @@ changestart2:
 	addi $s4, $s4, -4
 	lw $t6, 0($s4)
 	j changestart2
+
+stage1change:
+	lw $t6, 0($s5)
+	
+	sub $t5, $s2, $s5
+	bgt $t5, 16, invalidchange
+	addi $t5, $s3, 4
+	beq $s5, $t5, printval
+
+	
+	#Check valididy of char
+	#Check if number
+	li $t5, 47		
+	sgt $t4, $t6, $t5
