@@ -184,3 +184,16 @@ stage1change:
 	
 	li $t5, 86
 	slt $t8, $t6, $t5
+
+	and $t4, $t4, $t8
+	or $t0, $t0, $t4 
+	
+	#check if small letter
+	li $t5, 96
+	sgt $t4, $t6, $t5
+	
+	li $t5, 118
+	slt $t8, $t6, $t5
+	
+	and $t4, $t4, $t8
+	or $t0, $t0, $t4
