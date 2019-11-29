@@ -216,3 +216,35 @@ countloop:
 	mflo $t7
 	addi $t5, $t5, 1
 	j countloop
+endcountloop:
+	#Check if number
+	li $t5, 47		
+	sgt $t4, $t6, $t5
+
+	li $t5, 58
+	slt $t8, $t6, $t5
+	
+	and $t0, $t4, $t8
+	beq $t0, 1, numbers
+	
+	#Check if big  letter
+	li $t5, 64		
+	sgt $t4, $t6, $t5
+	
+	li $t5, 86
+	slt $t8, $t6, $t5
+	
+	and $t4, $t4, $t8
+	beq $t4, 1, bletters
+	
+	#check if small letter
+	li $t5, 96
+	sgt $t4, $t6, $t5
+	
+	li $t5, 118
+	slt $t8, $t6, $t5
+	
+	and $t4, $t4, $t8
+	beq $t4, 1, sletters
+	j invalidchange
+		#separate numbers from other valid inputs
