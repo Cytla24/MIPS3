@@ -71,3 +71,17 @@ addjump:
 	and $t8, $t2, $t3
 	
 	j stage1
+
+flip:
+	lw $t6, 0($sp)
+	bne $t6, 44, flipmid
+delete:
+	addi $sp, $sp, 4
+flipmid:
+	addi $sp, $sp, -4
+	sw $ra, 0($sp)
+	jal each
+	
+	lw $ra, 0($sp)
+	addi $sp, $sp, 4
+	j cstart
