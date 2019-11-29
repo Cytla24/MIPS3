@@ -324,3 +324,11 @@ addcomma2:
 	la $a0, comma
 	syscall	
 	j changeend
+changeend:
+	beq $sp, $s2, donecend
+	addi $sp, $sp, 4
+	j changeend
+donecend:
+	addi $sp, $sp, -4
+	sw $t2, 0($sp)
+	jr $ra
