@@ -208,3 +208,11 @@ stage1change:
 	li $t5, 0
 	li $t7, 1 		#reset SQ to zero
 	#loop to find the square of base we would be multiplying by
+
+countloop:
+	bge $t5, $t9, endcountloop
+	li $s6, 31
+	mult $s6, $t7
+	mflo $t7
+	addi $t5, $t5, 1
+	j countloop
