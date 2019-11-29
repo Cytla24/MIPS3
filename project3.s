@@ -1,3 +1,6 @@
-
-# MIPS Programming Project 3
-# Aimie Ojuba - @02837763
+.data
+	comma: .asciiz ","
+	invv: .asciiz "NaN"
+	input: .space 6
+.text
+main:
