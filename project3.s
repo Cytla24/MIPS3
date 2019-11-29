@@ -29,3 +29,16 @@ skip:
 	addi $t6, $t6, -1
 	j push
 done:
+jal convert
+	
+	#add a to test where stack is 
+	#li $t5, 97
+	#addi $sp, $sp, -4
+	#sw $t5, 0($sp)
+new:
+	
+	
+
+end:
+	li $v0,10
+	syscall
